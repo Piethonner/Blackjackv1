@@ -1,9 +1,9 @@
-#Blackjack v1 
+#Blackjack v1. v2 will be done in 2-4 weeks.
 #https://replit.com/@Piethonner/Blackjack-v1?v=1
 
 import random
 import art
-#from replit import clear #command from replit - line 31 and 
+#from replit import clear #!!command from replit - clear() is used in 31st line.
 
 cards_in_game = {
 "Your hand":[],
