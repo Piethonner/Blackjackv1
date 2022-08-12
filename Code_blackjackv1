@@ -70,17 +70,17 @@ def placement():
 
         #OUTCOMES
         if your_score == pc_score or your_score >21 and pc_score > 21:
-            if input("\nIt's a draw!👌\nDo you want to play again? type 'y' or 'n': ") == "n":
+            if input("\nIt's a draw!👌\nType 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
                 game = False
                 placement()
                 
         elif pc_score < your_score <= 21 or your_score <= 21 < pc_score:
-            if input("\nCongratulations! You win! 👑\nDo you want to play again? Type 'y' or 'n': ") == "n":
+            if input("\nCongratulations! You win! 👑\nType 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
                 game = False
                 placement()
 
         elif your_score < pc_score <= 21 or your_score > 21 and 17 <= pc_score <= 21:
-            if input("\nYou loose! 😔 \nType 'y' to play again or 'n' to leave: ") == "n":
+            if input("\nYou loose! 😔 \nType 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
                 game = False
                 placement()
 
