@@ -1,18 +1,23 @@
-#Blackjack v1. v2 will be done in 2-4 weeks.
-#https://replit.com/@Piethonner/Blackjack-v1?v=1
+# Blackjack v1
+# https://replit.com/@Piethonner/Blackjack-v1?v=1
 
 import random
 import art
-#from replit import clear #!!command from replit - clear() is used in 31st line.
+
+# from replit import clear #!!command from replit - clear() is used in 31st line.
 
 cards_in_game = {
-"Your hand":[],
-"PCs hand":[]
+    "Your hand": [],
+    "PCs hand": []
 }
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+
 def placement():
-    cards[0] = 11 # restarts possible override
-    answer_game = input("Do you want to start the game of Blackjack?\nType 'y' to start, or 'n' if you don't want to play for now.\nWrite 'rules' if you want to see the rules.\n ")
+    cards[0] = 11  # restarts possible override
+    answer_game = input(
+        "Do you want to start the game of Blackjack?\n"
+        "Type 'y' to start, or 'n' if you don't want to play for now.\nWrite 'rules' if you want to see the rules.\n ")
     if answer_game == "n":
         game = False
     elif answer_game == "y":
@@ -27,27 +32,31 @@ def placement():
 6. "y" stands for yes, while "n" for no - use these two as answers.
        ''')
         placement()
-    while game == True:
-        #clear()
+    while game:
+        # clear()
         print(art.logo)
-        cards_in_game["Your hand"] = random.sample(cards,2)
-        cards_in_game["PCs hand"] = random.sample(cards,1)
+        cards_in_game["Your hand"] = random.sample(cards, 2)
+        cards_in_game["PCs hand"] = random.sample(cards, 1)
         your_score = sum(cards_in_game['Your hand'])
         pc_score = sum(cards_in_game['PCs hand'])
-        
-        if your_score < 21: #passes this loop if player got 10 an 11 + we pick a cards here
-            answer1 = input(f"Your cards: {cards_in_game['Your hand']}, current score: {your_score}\nComputer's first card: {cards_in_game['PCs hand']}\nDo you want to pick next card? y or n: ")
-            while answer1 == "y" and your_score<21:
+
+        if your_score < 21:  # passes this loop if player got 10 an 11 + we pick a cards here
+            answer1 = input(
+                f"Your cards: {cards_in_game['Your hand']}, current score: {your_score}\n"
+                f"Computer's first card: {cards_in_game['PCs hand']}\nDo you want to pick next card? y or n: ")
+            while answer1 == "y" and your_score < 21:
                 if your_score >= 11:
                     cards[0] = 1
-                cards_in_game["Your hand"] += random.sample(cards,1)
+                cards_in_game["Your hand"] += random.sample(cards, 1)
                 your_score = sum(cards_in_game['Your hand'])
                 if your_score < 21:
-                    answer1 = input(f"Cards in your hand: {cards_in_game['Your hand']} with score of {your_score}. Pick another card? 'y' or 'n': ") 
+                    answer1 = input(
+                        f"Cards in your hand: {cards_in_game['Your hand']} with score of {your_score}. "
+                        f"Pick another card? 'y' or 'n': ")
                 pc_score = sum(cards_in_game['PCs hand'])
         print(f"\nYour final hand is: {cards_in_game['Your hand']} with final score of {your_score}.")
 
-        #if we went over 21 - PC takes cards to score between 17 and 21
+        # if we went over 21 - PC takes cards to score between 17 and 21
         if your_score > 21:
             while 17 > pc_score <= 21:
                 if pc_score < 11:
@@ -57,7 +66,7 @@ def placement():
                 cards_in_game["PCs hand"] += random.sample(cards, 1)
                 pc_score = sum(cards_in_game['PCs hand'])
 
-        #PC draws as high as possible if we're <= 21
+        # PC draws as high as possible if we're <= 21
         if your_score <= 21:
             while 17 > pc_score or pc_score < your_score:
                 if pc_score < 11:
@@ -68,14 +77,16 @@ def placement():
                 pc_score = sum(cards_in_game['PCs hand'])
         print(f"Cards in PC's hand: {cards_in_game['PCs hand']} with score of {pc_score}.")
 
-        #OUTCOMES
-        if your_score == pc_score or your_score >21 and pc_score > 21:
+        # OUTCOMES
+        if your_score == pc_score or your_score > 21 and pc_score > 21:
             if input("\nIt's a draw!👌\nType 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
                 game = False
                 placement()
-                
+
         elif pc_score < your_score <= 21 or your_score <= 21 < pc_score:
-            if input("\nCongratulations! You win! 👑\nType 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
+            if input(
+                    "\nCongratulations! You win! 👑"
+                    "Type 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
                 game = False
                 placement()
 
@@ -83,5 +94,6 @@ def placement():
             if input("\nYou loose! 😔 \nType 'y' if you want to play next one, or 'n' to go back to main menu: ") == "n":
                 game = False
                 placement()
+
 
 placement()
